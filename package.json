@@ -1,0 +1,49 @@
+{
+  "name": "nextjs-performance-booster",
+  "version": "1.0.6",
+  "description": "A performance booster for Next.js applications with Tailwind CSS, UI library selection, and optimized configurations.",
+  "main": "setup.js",
+  "bin": {
+    "nextjs-performance-booster": "setup.js"
+  },
+  "preferGlobal": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nextjs",
+    "performance",
+    "booster",
+    "optimization",
+    "tailwindcss",
+    "nextjs-setup",
+    "ui-library",
+    "shadcn",
+    "daisyui",
+    "flowbite",
+    "react",
+    "next-intl",
+    "purgecss",
+    "fast-nextjs",
+    "next-config",
+    "web-performance"
+  ],
+  "author": "Mahmoud Elsawah <https://www.linkedin.com/in/mahmoud-elsawah-198413219/>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mahmoudElsawah123/nextjs-performance-booster.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mahmoudElsawah123/nextjs-performance-booster/issues"
+  },
+  "homepage": "https://github.com/mahmoudElsawah123/nextjs-performance-booster#readme",
+  "type": "module",
+  "dependencies": {
+    "inquirer": "^12.4.1",
+    "nextjs-performance-booster": "file:"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
