@@ -1,6 +1,6 @@
 {
   "name": "nextjs-performance-booster",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A performance booster for Next.js applications with Tailwind CSS, UI library selection, and optimized configurations.",
   "main": "src/setup.js",
   "bin": {
