@@ -1,4 +1,3 @@
-# nextjs-performance-booster
 # Next.js Performance Booster 🚀
 
 **Optimize your Next.js projects with enhanced performance settings, TailwindCSS, and UI libraries!**
@@ -14,7 +13,7 @@
 
 ### 1️⃣ Install the package globally:
 ```bash
-npm install -g nextjs-performance-booster
+npx nextjs-performance-booster
 ```
 
 ### 2️⃣ Run the setup in your project:
