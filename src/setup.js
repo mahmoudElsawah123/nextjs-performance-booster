@@ -32,15 +32,15 @@ const createNextApp = async () => {
   ]);
 
   console.log(`🚀 Creating a new Next.js app: ${projectName}...`);
-  runCommand(`npx create-next-app@latest ${projectName} --ts --eslint --tailwind --app`);
+  runCommand(
+    `npx create-next-app@latest ${projectName} --eslint --tailwind --app`
+  );
   return projectName;
 };
 
 // Configure next.config.mjs
 const configureNextJs = (projectPath) => {
   const nextConfig = `
-import createNextIntlPlugin from 'next-intl/plugin';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config, { isServer }) {
@@ -69,9 +69,7 @@ const nextConfig = {
   },
 };
 
-const withNextIntl = createNextIntlPlugin();
-
-export default withNextIntl(nextConfig);
+export default nextConfig;
   `;
 
   fs.writeFileSync(path.join(projectPath, "next.config.mjs"), nextConfig);
@@ -79,7 +77,23 @@ export default withNextIntl(nextConfig);
 };
 
 // Configure tailwind.config.mjs
-const configureTailwindCss = (projectPath) => {
+const configureTailwindCss = (projectPath, uiLibrary) => {
+  let uiPlugin = "";
+  switch (uiLibrary) {
+    case "shadcn":
+      uiPlugin = ""; 
+      break;
+    case "flowbite":
+      uiPlugin = `require('flowbite/plugin')`;
+      break;
+    case "daisyui":
+      uiPlugin = `require('daisyui')`;
+      break;
+    case "flowbite-react":
+      uiPlugin = ""; 
+      break;
+  }
+
   const tailwindConfig = `
 import withPurgeCss from 'next-purgecss';
 
@@ -95,13 +109,17 @@ export default withPurgeCss({
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [${uiPlugin}],
 });
   `;
 
-  fs.writeFileSync(path.join(projectPath, "tailwind.config.mjs"), tailwindConfig);
+  fs.writeFileSync(
+    path.join(projectPath, "tailwind.config.mjs"),
+    tailwindConfig
+  );
   console.log("✅ tailwind.config.mjs has been successfully updated.");
 };
+
 
 // Install a single UI library
 const installUiLibrary = async (projectPath) => {
@@ -129,9 +147,15 @@ const installUiLibrary = async (projectPath) => {
 // Run the setup process
 const setupProject = async () => {
   const projectPath = await createNextApp();
+
+  console.log("📦 Installing next-purgecss...");
+  runCommand(`cd ${projectPath} && npm install next-purgecss --save-dev`);
+  console.log("✅ Successfully installed next-purgecss.");
+
   configureNextJs(projectPath);
   configureTailwindCss(projectPath);
   await installUiLibrary(projectPath);
+
   console.log("🎉 Next.js project setup completed successfully!");
   console.log(`💻 Run the following command to start your project:`);
   console.log(`  cd ${projectPath} && npm run dev`);
